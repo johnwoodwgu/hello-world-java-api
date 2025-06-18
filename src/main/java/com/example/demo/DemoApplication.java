@@ -14,7 +14,33 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 	@GetMapping("/hello")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return String.format("Hello %s!", name);
+	public MyResponseDTO hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+
+		MyResponseDTO response = new MyResponseDTO();
+		response.setMessage("Hello from Spring Boot");
+		response.setCode(200);
+		return response;
+	}
+
+	public class MyResponseDTO {
+		private String message;
+		private int code;
+
+		// Getters and Setters
+		public String getMessage() {
+			return message;
+		}
+
+		public void setMessage(String message) {
+			this.message = message;
+		}
+
+		public int getCode() {
+			return code;
+		}
+
+		public void setCode(int code) {
+			this.code = code;
+		}
 	}
 }
